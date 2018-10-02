@@ -1,0 +1,75 @@
+<!--Operational Dashboard Header-->
+<mat-toolbar color="primary" class="z-depth">
+  <mat-toolbar-row>
+    <button mat-raised-button style="height:100%"> <img style="width:85px; height:auto; background: #fff" src="assets/image/logo.png"/></button>
+    <mat-icon class="header-icon" matTooltip="Home" matTooltipPosition="below">home</mat-icon>
+    <img style="width:25px;height:auto;" (click)="openAirflowDialog()" class="header-icon" matTooltip="Airflow" matTooltipPosition="below" src="assets/image/airflow_logo.png"/>
+    <span class="header-spacer"></span>
+    <button  mat-raised-button class="userid_info"></button>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+       <mat-icon class="header-icon">more_vert</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <ng-template matMenuContent>
+        <button mat-menu-item (click)="openHelpDialog()"><mat-icon>help</mat-icon> Help</button>
+        <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon> Logout</button>
+      </ng-template>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- Filter applications and display removable chips -->
+<app-chipsautocomplete (onApplications)="setStatistics($event)"></app-chipsautocomplete>
+
+<!-- Dashboard Statistics -->
+<mat-grid-list class="statusdashboard" cols="5" rowHeight="120px">
+
+  <mat-grid-tile class="runstats box rotate" [colspan]="1" [rowspan]="2" >
+    <mat-card class="status-card waiting">
+      <mat-card-content style="text-align:center; font-size:90px;" >{{waiting}}</mat-card-content>
+      <mat-card-actions  style="text-align: center">
+        <button mat-stroked-button (click)="openWaitingDialog()">Jobs Waiting</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile class=" runstats box rotate" [colspan]="1" [rowspan]="2" >
+    <mat-card class="status-card completed">
+      <mat-card-content style="text-align:center; font-size:90px;" >{{completed}}</mat-card-content>
+      <mat-card-actions  style="text-align: center">
+        <button mat-stroked-button (click)="openCompletedDialog()">Jobs Completed</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="runstats box rotate" [colspan]="1" [rowspan]="2" >
+    <mat-card class="status-card running">
+      <mat-card-content style="text-align:center; font-size:90px;" >{{running}}</mat-card-content>
+      <mat-card-actions  style="text-align: center">
+        <button mat-stroked-button (click) = "openRunningDialog()">Jobs Running</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="runstats box rotate" [colspan]="1" [rowspan]="2" >
+    <mat-card  class="status-card failed">
+      <mat-card-content id="failedjobsvalue" style="text-align:center; font-size:90px;" >{{failed}}</mat-card-content>
+      <mat-card-actions style="text-align: center">
+        <button mat-stroked-button (click)="openFailedDialog()">Jobs Failed</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+        
+  <mat-grid-tile class="runstats box rotate" [colspan]="1" [rowspan]="2">
+    <mat-card class="status-card sla-missed">
+        <mat-card-content style="text-align:center; font-size:90px;" >{{slamissed}}</mat-card-content>
+        <mat-card-actions  style="text-align: center">
+          <button mat-stroked-button (click)="openSLAMissedDialog()">SLA Missed</button>
+        </mat-card-actions>
+    </mat-card>   
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<!--Plotly.js Graphs -->
+<!--<app-plotlyjs></app-plotlyjs>-->

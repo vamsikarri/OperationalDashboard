@@ -1,0 +1,45 @@
+<!--Operational Dashboard Header-->
+<mat-toolbar color="primary" class="z-depth">
+  <mat-toolbar-row>
+    <button mat-raised-button style="height:100%"> <img style="width:85px; height:auto; background: #fff" src="assets/image/logo.png"/></button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!--Login-->
+<mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile [colspan]="1" [rowspan]="4"></mat-grid-tile>
+   <mat-grid-tile [colspan]="1" [rowspan]="4">
+    <mat-card>
+        <mat-toolbar>
+            <span>Operational Dashboard</span>
+          </mat-toolbar>
+      <mat-card-content style="text-align:center;" >
+        <mat-form-field>
+          <input [(ngModel)]="username" matInput [formControl]="usernm" placeholder="Username" type="text">
+          <mat-error *ngIf="usernm.invalid">{{getUsernameErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="password" matInput [formControl]="pswd" placeholder="Password" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="pswd.invalid">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [(value)]="selected_role" [formControl]="role" placeholder="Select Role">
+            <mat-option value="admin">Admin</mat-option>
+            <mat-option value="developer">Developer</mat-option>
+            <mat-option value="opr-l1">OPR-L1</mat-option>
+            <mat-option value="opr-l2">OPR-L2</mat-option>
+            <mat-option value="opr-l3">OPR-L3</mat-option>
+            <mat-option value="opr-l4">OPR-L4</mat-option>
+          </mat-select>
+          <mat-error *ngIf="role.invalid">{{getRoleErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions  style="text-align: center">
+        <button mat-stroked-button mat-raised-button color="primary" (click)="login()">Login</button>
+        <button mat-stroked-button (click)="openRegistrationDialog()">Register</button>
+      </mat-card-actions>
+    </mat-card>
+   </mat-grid-tile>
+   <mat-grid-tile [colspan]="1" [rowspan]="4"></mat-grid-tile>
+</mat-grid-list>

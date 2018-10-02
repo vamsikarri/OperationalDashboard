@@ -1,0 +1,31 @@
+<!-- Accordion which cotains filter select options -->
+<mat-accordion>
+  <mat-expansion-panel style="margin-top:20px;">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       Select Applications to Filter Operational Dashboard
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-chip-list #chipList style="display:inline-block;margin-left:10px;">
+          <mat-chip
+            *ngFor="let application of applications"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(application)">
+            {{application}}
+           <!-- <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
+          </mat-chip>
+        </mat-chip-list>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <mat-select [(ngModel)]="applications" (ngModelChange)="add($event);setStatistics()" placeholder="Select Application" multiple>
+        <mat-option *ngFor="let application of allApplications" value="{{application}}">{{application}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  </mat-expansion-panel>
+</mat-accordion>
+    
+      
+  

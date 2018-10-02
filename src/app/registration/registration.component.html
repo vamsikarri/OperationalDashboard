@@ -1,0 +1,92 @@
+<div>
+    <h2 mat-dialog-title>User Registration <mat-icon style="float:right;cursor:pointer" (click)="onCloseCancel()">close</mat-icon></h2>
+    <mat-dialog-content>
+        <mat-grid-list cols="2" rowHeight="100px">
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="user_identifier" [formControl]="userid" matInput placeholder="User ID" required>
+                    <mat-error *ngIf="userid.invalid">{{getUserIDErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-select [(value)]="user_role_group_identifier" [formControl]="userrole" placeholder="User Role Group Identifier" required>
+                        <mat-option *ngFor="let userrole of user_roles" value="{{userrole}}">{{userrole}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="userrole.invalid">{{getUserRoleErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-select [(value)]="gathi_application_identifier" [formControl]="application" placeholder="Gathi Application Identifier" required>
+                        <mat-option *ngFor="let application_nm of application_names" value="{{application_nm}}">{{application_nm}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="application.invalid">{{getApplicationNamesErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+           <!-- <mat-grid-tile>
+                <mat-form-field>
+                    <input class="access_request_date" matInput [matDatepicker]="picker" placeholder="Access Request date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>-->
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="access_request_start_date" matInput [formControl]="accessreqstrtdt" [matDatepicker]="pickerStart" placeholder="Access Request Start date" required>
+                    <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerStart></mat-datepicker>
+                    <mat-error *ngIf="accessreqstrtdt.invalid">{{getAccessReqStrtDtErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="access_request_end_date" matInput [formControl]="accessreqenddt" [matDatepicker]="pickerEnd" placeholder="Access Request End date" required>
+                    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerEnd></mat-datepicker>
+                    <mat-error *ngIf="accessreqenddt.invalid">{{getAccessReqEndDtErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+          <!--  <mat-grid-tile>
+                <mat-form-field>
+                    <input class="access_approval_status_text" matInput placeholder="Access Approval Status Text">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="access_approval_date" matInput [matDatepicker]="pickerApproval" placeholder="Access Approval date">
+                    <mat-datepicker-toggle matSuffix [for]="pickerApproval"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerApproval></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="approval_effective_start_date" matInput [matDatepicker]="pickerApprovaleffstrtdt" placeholder="Approval Effective Start date">
+                    <mat-datepicker-toggle matSuffix [for]="pickerApprovaleffstrtdt"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerApprovaleffstrtdt></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="approval_effective_end_date" matInput [matDatepicker]="pickerApprovaleffenddt" placeholder="Approval Effective End date">
+                    <mat-datepicker-toggle matSuffix [for]="pickerApprovaleffenddt"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerApprovaleffenddt></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="record_created_by_identifier" matInput placeholder="Record Created by Identifier">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input class="record_last_update_timestamp" matInput placeholder="Record Last Update Timestamp">
+                </mat-form-field>
+            </mat-grid-tile>-->
+        </mat-grid-list>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button mat-raised-button color="primary" (click)="userRegsitration()">Submit</button>
+        <button mat-button (click)="onCloseCancel()">Cancel</button>
+    </mat-dialog-actions>
+</div>
